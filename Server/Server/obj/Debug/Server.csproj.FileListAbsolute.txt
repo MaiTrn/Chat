@@ -1,0 +1,10 @@
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\bin\Debug\Server.exe.config
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\bin\Debug\Server.exe
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\bin\Debug\Server.pdb
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.frmServer.resources
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.Properties.Resources.resources
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.csproj.GenerateResource.cache
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.exe
+E:\Visual Studio\LTTQ\ClientServerChat\Server\Server\obj\Debug\Server.pdb
