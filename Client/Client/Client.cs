@@ -23,6 +23,7 @@ namespace Client
         const int PORTNUM = 8000;
         private IPEndPoint localIP;
         private Socket client;
+        private string user;
         public Client()
         {
             InitializeComponent();
@@ -32,13 +33,30 @@ namespace Client
 
         private void Client_Load(object sender, EventArgs e)
         {
+            frmLogin login = new frmLogin();
             Connect();
+            AttemptLogin();
+        }
+
+        private void AttemptLogin()
+        {
+            
+            frmLogin login = new frmLogin();
+            login.ShowDialog();
+            if(login.DialogResult == DialogResult.OK)
+            {
+                user = login.txtlogin.Text;
+            }
+            if(login.DialogResult == DialogResult.Cancel)
+            {
+                Close();
+            }
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             Send();
-            AddMessage(txtMessage.Text);
+            AddMessage(user + ": " + txtMessage.Text);
         }
 
         /// <summary>
@@ -80,7 +98,7 @@ namespace Client
         public void Send()
         {
             if (txtMessage.Text != string.Empty)
-                client.Send(Serialize(txtMessage.Text));
+                client.Send(Serialize(user + ": " + txtMessage.Text));
         }
 
         /// <summary>

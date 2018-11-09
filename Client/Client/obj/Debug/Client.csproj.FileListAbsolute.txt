@@ -8,3 +8,4 @@ E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\bin\Debug\Client.exe
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\bin\Debug\Client.pdb
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.exe
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.pdb
+E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.frmLogin.resources

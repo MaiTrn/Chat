@@ -23,7 +23,7 @@ namespace Server
         const int PORTNUM = 8000;
         private IPEndPoint localIP;
         private Socket server;
-        private List<Socket> clientList;
+        private List<ClientInfo> clientList;
 
 
         public frmServer()
@@ -43,11 +43,11 @@ namespace Server
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            foreach (Socket client in clientList)
+            foreach (ClientInfo client in clientList)
             {
-                Send(client);
+               Send(txtMessage.Text, client.ClientSocket);
             }
-            AddMessage(txtMessage.Text);
+            AddMessage("Server: " + txtMessage.Text);
             txtMessage.Clear();
         }
 
@@ -56,7 +56,7 @@ namespace Server
         /// </summary>
         public void Connect()
         {
-            clientList = new List<Socket>();
+            clientList = new List<ClientInfo>();
             localIP = new IPEndPoint(IPAddress.Any, PORTNUM);
             server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             server.Bind(localIP);
@@ -69,7 +69,7 @@ namespace Server
                     {
                         server.Listen(100);
                         Socket client = server.Accept();
-                        clientList.Add(client);
+                        clientList.Add(new ClientInfo(client));
 
                         Thread receive = new Thread(Receive);
                         receive.IsBackground = true;
@@ -97,10 +97,10 @@ namespace Server
         /// <summary>
         /// gui tin
         /// </summary>
-        public void Send(Socket client)
+        public void Send(string msg, Socket client)
         {
-            if (client != null && txtMessage.Text != string.Empty)
-                client.Send(Serialize(txtMessage.Text));
+            if (client != null && msg != string.Empty)
+                client.Send(Serialize("Server: " + msg));
         }
 
         /// <summary>
@@ -117,17 +117,17 @@ namespace Server
                     client.Receive(data);
 
                     string message = (string)Deserialize(data);
-                    foreach(Socket item in clientList)
+                    foreach(ClientInfo item in clientList)
                     {
-                        if (item != null && item != client)
-                            item.Send(Serialize(message));
+                        if (item.ClientSocket != null && item.ClientSocket != client)
+                            item.ClientSocket.Send(Serialize(message));
                     }
                     AddMessage(message);
                 }
             }
             catch
             {
-                clientList.Remove(client);
+                clientList.Remove(new ClientInfo(client));
                 client.Close();
             }
 
@@ -170,6 +170,26 @@ namespace Server
 
             return formatter.Deserialize(stream);
         }
+
+       /// <summary>
+       /// dang nhap
+       /// </summary>
+       /// <param name="Name"></param>
+       /// <param name="client"></param>
+        private void ConnectUser(string Name, ClientInfo client)
+        {
+            client.Name = Name;
+            clientList.Add(client);
+            AddMessage(client.Name + " just logged in");
+            foreach (ClientInfo item in clientList)
+            {
+                Send(client.Name + " just logged in", client.ClientSocket);
+            }
+
+        }
+
+
+
 
         private void frmServer_FormClosed(object sender, FormClosedEventArgs e)
         {
