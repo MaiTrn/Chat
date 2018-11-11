@@ -14,7 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Server
 {
     //delegate để handle request từ phía user
-    public delegate void ReceivedCmd(string data, ClientInfo c);
+    public delegate void ReceiveCmd(string data, ClientInfo c);
 
 
     //class chứa socket và thông tin của 1 user cụ thể
@@ -38,9 +38,9 @@ namespace Server
             }
         }
 
-        public ClientInfo(Socket client)
+        public ClientInfo(Socket c)
         {
-            this.client = client;
+            this.client = c;
         }
 
         public Socket ClientSocket
@@ -55,5 +55,11 @@ namespace Server
             }
         }
 
+        public event ReceiveCmd ReceivedCmd;
+
+        public void SendData(string mydata)
+        {
+            ReceivedCmd(mydata, this);
+        }
     }
 }

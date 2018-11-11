@@ -20,7 +20,7 @@ namespace Server
     public partial class frmServer : Form
     {
         private Thread listenerThread;
-        const int PORTNUM = 8000;
+        const int PORTNUM = 8910;
         private IPEndPoint localIP;
         private Socket server;
         private List<ClientInfo> clientList;
@@ -43,17 +43,96 @@ namespace Server
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            foreach (ClientInfo client in clientList)
+            if(txtMessage.Text != string.Empty)
             {
-               Send(txtMessage.Text, client.ClientSocket);
+                foreach (ClientInfo client in clientList)
+                {
+                    Send(("CHAT|Server: " + txtMessage.Text), client);
+                }
+                AddMessage("Server: " + txtMessage.Text);
+                txtMessage.Clear();
             }
-            AddMessage("Server: " + txtMessage.Text);
-            txtMessage.Clear();
+            
         }
 
-        /// <summary>
-        /// mo ket noi
-        /// </summary>
+        //tuy theo tung lenh user gui tra ve, duoc ngan cach boi dau |
+        //co cach xu ly khac nhau
+        //them chuc nang cho form vao day
+        #region Xu ly Request tu nguoi dung
+        private void OnLineReceived(string data, ClientInfo sender)
+        {
+            string[] dataArray = data.Split('|');
+            switch (dataArray[0])
+            {
+                case "CONNECT":         //nguoi dung dang nhap
+                    ConnectUser(dataArray[1], sender);
+                    break;
+                case "DISCONNECT":      // nguoi dung thoat
+                    DisconnectUser(dataArray[1], sender);
+                    break;
+                case "CHAT":            //gui tin nhan
+                    SendChat(dataArray[1], sender);
+                    break;
+                case "REQUESTUSERS":    // yeu cau gui list user dang online
+                    ListUsers(sender);
+                    break;
+                default:
+                    AddMessage("Unknown message: " + data);
+                    break;
+            }
+        }
+
+        private void ConnectUser(string Name, ClientInfo client)
+        {
+            client.Name = Name;
+            clientList.Add(client);
+            AddMessage(client.Name + " just logged in");
+            foreach (ClientInfo item in clientList)
+            {
+                Send("CHAT|" + client.Name + " just logged in", item);
+            }
+
+        }
+        private void ListUsers(ClientInfo client)
+        {
+            string ListedUsers = "REQUESTUSERS|";
+            foreach (ClientInfo item in clientList)
+            {
+                ListedUsers = ListedUsers + item.Name + ",";
+            }
+            Send(ListedUsers, client);
+        }
+        private void SendChat(string message, ClientInfo client)
+        {
+            try
+            {
+                foreach (ClientInfo item in clientList)
+                {
+                    if (item.ClientSocket != null && item.Name != client.Name)
+                         Send(("CHAT|" + message), item);
+                }
+            }
+            catch
+            {
+                clientList.Remove(client);
+                client.ClientSocket.Close();
+            }
+        }
+        private void DisconnectUser(string data, ClientInfo client)
+        {
+            AddMessage(data + " just logged out");
+            foreach (ClientInfo item in clientList)
+            {
+                if(item.Name != client.Name)
+                    Send("CHAT|" + data + " just logged out", item);
+            }
+            clientList.Remove(client);
+            client.ClientSocket.Close();
+        }
+        #endregion
+
+        //connect voi client, lang nghe client
+        #region Tao ket noi
         public void Connect()
         {
             clientList = new List<ClientInfo>();
@@ -68,9 +147,9 @@ namespace Server
                     while(true)
                     {
                         server.Listen(100);
-                        Socket client = server.Accept();
-                        clientList.Add(new ClientInfo(client));
-
+                        ClientInfo client = new ClientInfo(server.Accept());
+                        client.ReceivedCmd += new ReceiveCmd(OnLineReceived);
+                        
                         Thread receive = new Thread(Receive);
                         receive.IsBackground = true;
                         receive.Start(client);
@@ -85,69 +164,60 @@ namespace Server
             listenerThread.IsBackground = true;
             listenerThread.Start();
         }
-
-        /// <summary>
-        /// dong ket noi
-        /// </summary>
+        #endregion
+        
+        //dong server
+        #region Dong ket noi
         public void Disconnect()
         {
             server.Close();
         }
+        #endregion
 
-        /// <summary>
-        /// gui tin
-        /// </summary>
-        public void Send(string msg, Socket client)
+        #region Server gui tin
+        public void Send(string msg, ClientInfo client)
         {
-            if (client != null && msg != string.Empty)
-                client.Send(Serialize("Server: " + msg));
+            if (client.ClientSocket != null && msg != string.Empty)
+            {
+                client.ClientSocket.Send(Serialize(msg));
+            }
+              
         }
+        #endregion
 
-        /// <summary>
-        /// nhan tin
-        /// </summary>
+        //nhan tin tu client, dua qua cho ham xu ly request tiep tuc xu ly
+        #region Xu ly tin nhan duoc tu client
         public void Receive(object obj)
         {
-            Socket client = obj as Socket;
+            ClientInfo client = obj as ClientInfo;
             try
             {
                 while (true)
                 {
                     byte[] data = new byte[1024 * 5000];
-                    client.Receive(data);
-
+                    client.ClientSocket.Receive(data);
                     string message = (string)Deserialize(data);
-                    foreach(ClientInfo item in clientList)
-                    {
-                        if (item.ClientSocket != null && item.ClientSocket != client)
-                            item.ClientSocket.Send(Serialize(message));
-                    }
-                    AddMessage(message);
+                    client.SendData(message);
                 }
             }
             catch
             {
-                clientList.Remove(new ClientInfo(client));
-                client.Close();
+                clientList.Remove(client);
+                client.ClientSocket.Close();
             }
 
         }
+        #endregion
 
-        /// <summary>
-        /// them message
-        /// </summary>
-        /// <param name="s"></param>
+        #region Them tin nhan vao msg box
         public void AddMessage(string s)
         {
             listBoxStatus.Items.Add(s);
             txtMessage.Clear();
         }
+        #endregion
 
-        /// <summary>
-        /// phan manh
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        #region Phan manh du lieu nhan duoc thanh cac mang bye
         private byte[] Serialize(object obj)
         {
             MemoryStream stream = new MemoryStream();
@@ -157,12 +227,9 @@ namespace Server
 
             return stream.ToArray();
         }
+        #endregion
 
-        /// <summary>
-        /// gom manh
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        #region Gom nhom cac mang byte thanh du lieu
         private object Deserialize(byte[] data)
         {
             MemoryStream stream = new MemoryStream(data);
@@ -170,27 +237,9 @@ namespace Server
 
             return formatter.Deserialize(stream);
         }
+        #endregion
 
-       /// <summary>
-       /// dang nhap
-       /// </summary>
-       /// <param name="Name"></param>
-       /// <param name="client"></param>
-        private void ConnectUser(string Name, ClientInfo client)
-        {
-            client.Name = Name;
-            clientList.Add(client);
-            AddMessage(client.Name + " just logged in");
-            foreach (ClientInfo item in clientList)
-            {
-                Send(client.Name + " just logged in", client.ClientSocket);
-            }
-
-        }
-
-
-
-
+        //dong form
         private void frmServer_FormClosed(object sender, FormClosedEventArgs e)
         {
             Disconnect();

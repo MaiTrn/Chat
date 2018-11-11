@@ -37,6 +37,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnonlineusers = new System.Windows.Forms.Button();
+            this.lbName = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,11 +55,13 @@
             // 
             // listBoxUsers
             // 
+            this.listBoxUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxUsers.FormattingEnabled = true;
-            this.listBoxUsers.ItemHeight = 16;
-            this.listBoxUsers.Location = new System.Drawing.Point(16, 51);
+            this.listBoxUsers.ItemHeight = 20;
+            this.listBoxUsers.Location = new System.Drawing.Point(16, 67);
             this.listBoxUsers.Name = "listBoxUsers";
-            this.listBoxUsers.Size = new System.Drawing.Size(165, 308);
+            this.listBoxUsers.ScrollAlwaysVisible = true;
+            this.listBoxUsers.Size = new System.Drawing.Size(165, 264);
             this.listBoxUsers.TabIndex = 11;
             // 
             // btnSend
@@ -73,6 +77,7 @@
             // 
             // txtMessage
             // 
+            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMessage.Location = new System.Drawing.Point(187, 361);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
@@ -82,20 +87,22 @@
             // listBoxStatus
             // 
             this.listBoxStatus.BackColor = System.Drawing.SystemColors.Window;
+            this.listBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxStatus.ForeColor = System.Drawing.Color.Black;
             this.listBoxStatus.FormattingEnabled = true;
-            this.listBoxStatus.ItemHeight = 16;
-            this.listBoxStatus.Location = new System.Drawing.Point(187, 31);
+            this.listBoxStatus.ItemHeight = 20;
+            this.listBoxStatus.Location = new System.Drawing.Point(187, 63);
             this.listBoxStatus.Name = "listBoxStatus";
-            this.listBoxStatus.Size = new System.Drawing.Size(537, 324);
+            this.listBoxStatus.ScrollAlwaysVisible = true;
+            this.listBoxStatus.Size = new System.Drawing.Size(537, 284);
             this.listBoxStatus.TabIndex = 7;
             // 
             // btnPrivChat
             // 
             this.btnPrivChat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrivChat.Location = new System.Drawing.Point(30, 384);
+            this.btnPrivChat.Location = new System.Drawing.Point(16, 410);
             this.btnPrivChat.Name = "btnPrivChat";
-            this.btnPrivChat.Size = new System.Drawing.Size(135, 35);
+            this.btnPrivChat.Size = new System.Drawing.Size(135, 25);
             this.btnPrivChat.TabIndex = 13;
             this.btnPrivChat.Text = "Private Chat";
             this.btnPrivChat.UseVisualStyleBackColor = true;
@@ -124,11 +131,35 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
+            // btnonlineusers
+            // 
+            this.btnonlineusers.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnonlineusers.Location = new System.Drawing.Point(16, 361);
+            this.btnonlineusers.Name = "btnonlineusers";
+            this.btnonlineusers.Size = new System.Drawing.Size(135, 28);
+            this.btnonlineusers.TabIndex = 15;
+            this.btnonlineusers.Text = "Online Users";
+            this.btnonlineusers.UseVisualStyleBackColor = true;
+            this.btnonlineusers.Click += new System.EventHandler(this.btnonlineusers_Click);
+            // 
+            // lbName
+            // 
+            this.lbName.AutoSize = true;
+            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.ForeColor = System.Drawing.Color.Firebrick;
+            this.lbName.Location = new System.Drawing.Point(184, 28);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(106, 20);
+            this.lbName.TabIndex = 16;
+            this.lbName.Text = "Username: ";
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(747, 448);
+            this.Controls.Add(this.lbName);
+            this.Controls.Add(this.btnonlineusers);
             this.Controls.Add(this.btnPrivChat);
             this.Controls.Add(this.labelUsers);
             this.Controls.Add(this.listBoxUsers);
@@ -138,6 +169,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Client";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Client";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmServer_FormClosed);
             this.Load += new System.EventHandler(this.Client_Load);
@@ -159,5 +191,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.Button btnonlineusers;
+        private System.Windows.Forms.Label lbName;
     }
 }

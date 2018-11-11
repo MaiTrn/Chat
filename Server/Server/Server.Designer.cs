@@ -35,20 +35,24 @@
             this.labelstatus = new System.Windows.Forms.Label();
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
-            this.listBoxUsers = new System.Windows.Forms.ListBox();
-            this.labelUsers = new System.Windows.Forms.Label();
+            this.lbIP = new System.Windows.Forms.Label();
+            this.lbPORT = new System.Windows.Forms.Label();
+            this.IP = new System.Windows.Forms.TextBox();
+            this.port = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxStatus
             // 
             this.listBoxStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.listBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxStatus.ForeColor = System.Drawing.Color.IndianRed;
             this.listBoxStatus.FormattingEnabled = true;
-            this.listBoxStatus.ItemHeight = 16;
+            this.listBoxStatus.ItemHeight = 20;
             this.listBoxStatus.Location = new System.Drawing.Point(12, 88);
             this.listBoxStatus.Name = "listBoxStatus";
-            this.listBoxStatus.Size = new System.Drawing.Size(412, 228);
+            this.listBoxStatus.ScrollAlwaysVisible = true;
+            this.listBoxStatus.Size = new System.Drawing.Size(412, 224);
             this.listBoxStatus.TabIndex = 0;
             // 
             // menuStrip1
@@ -88,10 +92,11 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(12, 357);
+            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Location = new System.Drawing.Point(12, 337);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(481, 42);
+            this.txtMessage.Size = new System.Drawing.Size(481, 62);
             this.txtMessage.TabIndex = 3;
             // 
             // btnSend
@@ -105,33 +110,59 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // listBoxUsers
+            // lbIP
             // 
-            this.listBoxUsers.FormattingEnabled = true;
-            this.listBoxUsers.ItemHeight = 16;
-            this.listBoxUsers.Location = new System.Drawing.Point(457, 88);
-            this.listBoxUsers.Name = "listBoxUsers";
-            this.listBoxUsers.Size = new System.Drawing.Size(148, 228);
-            this.listBoxUsers.TabIndex = 5;
+            this.lbIP.AutoSize = true;
+            this.lbIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIP.Location = new System.Drawing.Point(446, 88);
+            this.lbIP.Name = "lbIP";
+            this.lbIP.Size = new System.Drawing.Size(32, 20);
+            this.lbIP.TabIndex = 5;
+            this.lbIP.Text = "IP:";
             // 
-            // labelUsers
+            // lbPORT
             // 
-            this.labelUsers.AutoSize = true;
-            this.labelUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUsers.ForeColor = System.Drawing.Color.Firebrick;
-            this.labelUsers.Location = new System.Drawing.Point(453, 50);
-            this.labelUsers.Name = "labelUsers";
-            this.labelUsers.Size = new System.Drawing.Size(119, 20);
-            this.labelUsers.TabIndex = 6;
-            this.labelUsers.Text = "Users Online";
+            this.lbPORT.AutoSize = true;
+            this.lbPORT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPORT.Location = new System.Drawing.Point(447, 174);
+            this.lbPORT.Name = "lbPORT";
+            this.lbPORT.Size = new System.Drawing.Size(65, 20);
+            this.lbPORT.TabIndex = 6;
+            this.lbPORT.Text = "PORT:";
+            // 
+            // IP
+            // 
+            this.IP.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.IP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IP.Location = new System.Drawing.Point(463, 117);
+            this.IP.Multiline = true;
+            this.IP.Name = "IP";
+            this.IP.ReadOnly = true;
+            this.IP.Size = new System.Drawing.Size(100, 32);
+            this.IP.TabIndex = 7;
+            this.IP.Text = " 127.0.0.1";
+            // 
+            // port
+            // 
+            this.port.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.port.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.port.Location = new System.Drawing.Point(463, 204);
+            this.port.Multiline = true;
+            this.port.Name = "port";
+            this.port.ReadOnly = true;
+            this.port.Size = new System.Drawing.Size(100, 32);
+            this.port.TabIndex = 8;
+            this.port.Text = " 8910";
             // 
             // frmServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(631, 420);
-            this.Controls.Add(this.labelUsers);
-            this.Controls.Add(this.listBoxUsers);
+            this.Controls.Add(this.port);
+            this.Controls.Add(this.IP);
+            this.Controls.Add(this.lbPORT);
+            this.Controls.Add(this.lbIP);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.labelstatus);
@@ -158,8 +189,10 @@
         private System.Windows.Forms.Label labelstatus;
         private System.Windows.Forms.TextBox txtMessage;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.ListBox listBoxUsers;
-        private System.Windows.Forms.Label labelUsers;
+        private System.Windows.Forms.Label lbIP;
+        private System.Windows.Forms.Label lbPORT;
+        private System.Windows.Forms.TextBox IP;
+        private System.Windows.Forms.TextBox port;
     }
 }
 
