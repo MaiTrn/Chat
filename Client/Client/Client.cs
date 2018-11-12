@@ -140,7 +140,7 @@ namespace Client
         /// <param name="s"></param>
         public void AddMessage(string s)
         {
-            listBoxStatus.Items.Add(s);
+            txtboxMsg.AppendText(s + Environment.NewLine);
             txtMessage.Clear();
         }
 

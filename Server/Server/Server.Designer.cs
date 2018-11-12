@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBoxStatus = new System.Windows.Forms.ListBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,21 +38,9 @@
             this.lbPORT = new System.Windows.Forms.Label();
             this.IP = new System.Windows.Forms.TextBox();
             this.port = new System.Windows.Forms.TextBox();
+            this.txtboxStatus = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listBoxStatus
-            // 
-            this.listBoxStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.listBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxStatus.ForeColor = System.Drawing.Color.IndianRed;
-            this.listBoxStatus.FormattingEnabled = true;
-            this.listBoxStatus.ItemHeight = 20;
-            this.listBoxStatus.Location = new System.Drawing.Point(12, 88);
-            this.listBoxStatus.Name = "listBoxStatus";
-            this.listBoxStatus.ScrollAlwaysVisible = true;
-            this.listBoxStatus.Size = new System.Drawing.Size(412, 224);
-            this.listBoxStatus.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -63,7 +50,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(631, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(580, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -92,17 +79,17 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMessage.Location = new System.Drawing.Point(12, 337);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(481, 62);
+            this.txtMessage.Size = new System.Drawing.Size(412, 62);
             this.txtMessage.TabIndex = 3;
             // 
             // btnSend
             // 
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSend.Location = new System.Drawing.Point(512, 357);
+            this.btnSend.Location = new System.Drawing.Point(451, 348);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(93, 42);
             this.btnSend.TabIndex = 4;
@@ -114,7 +101,7 @@
             // 
             this.lbIP.AutoSize = true;
             this.lbIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIP.Location = new System.Drawing.Point(446, 88);
+            this.lbIP.Location = new System.Drawing.Point(434, 114);
             this.lbIP.Name = "lbIP";
             this.lbIP.Size = new System.Drawing.Size(32, 20);
             this.lbIP.TabIndex = 5;
@@ -124,7 +111,7 @@
             // 
             this.lbPORT.AutoSize = true;
             this.lbPORT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPORT.Location = new System.Drawing.Point(447, 174);
+            this.lbPORT.Location = new System.Drawing.Point(435, 200);
             this.lbPORT.Name = "lbPORT";
             this.lbPORT.Size = new System.Drawing.Size(65, 20);
             this.lbPORT.TabIndex = 6;
@@ -134,7 +121,7 @@
             // 
             this.IP.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.IP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IP.Location = new System.Drawing.Point(463, 117);
+            this.IP.Location = new System.Drawing.Point(451, 143);
             this.IP.Multiline = true;
             this.IP.Name = "IP";
             this.IP.ReadOnly = true;
@@ -146,7 +133,7 @@
             // 
             this.port.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.port.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.port.Location = new System.Drawing.Point(463, 204);
+            this.port.Location = new System.Drawing.Point(451, 230);
             this.port.Multiline = true;
             this.port.Name = "port";
             this.port.ReadOnly = true;
@@ -154,11 +141,25 @@
             this.port.TabIndex = 8;
             this.port.Text = " 8910";
             // 
+            // txtboxStatus
+            // 
+            this.txtboxStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtboxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxStatus.ForeColor = System.Drawing.Color.IndianRed;
+            this.txtboxStatus.Location = new System.Drawing.Point(12, 86);
+            this.txtboxStatus.Multiline = true;
+            this.txtboxStatus.Name = "txtboxStatus";
+            this.txtboxStatus.ReadOnly = true;
+            this.txtboxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtboxStatus.Size = new System.Drawing.Size(412, 224);
+            this.txtboxStatus.TabIndex = 9;
+            // 
             // frmServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 420);
+            this.ClientSize = new System.Drawing.Size(580, 420);
+            this.Controls.Add(this.txtboxStatus);
             this.Controls.Add(this.port);
             this.Controls.Add(this.IP);
             this.Controls.Add(this.lbPORT);
@@ -166,7 +167,6 @@
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
             this.Controls.Add(this.labelstatus);
-            this.Controls.Add(this.listBoxStatus);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmServer";
@@ -181,8 +181,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBoxStatus;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -193,6 +191,7 @@
         private System.Windows.Forms.Label lbPORT;
         private System.Windows.Forms.TextBox IP;
         private System.Windows.Forms.TextBox port;
+        private System.Windows.Forms.TextBox txtboxStatus;
     }
 }
 

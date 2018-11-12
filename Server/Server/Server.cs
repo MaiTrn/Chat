@@ -212,7 +212,7 @@ namespace Server
         #region Them tin nhan vao msg box
         public void AddMessage(string s)
         {
-            listBoxStatus.Items.Add(s);
+            txtboxStatus.AppendText(s + Environment.NewLine);
             txtMessage.Clear();
         }
         #endregion

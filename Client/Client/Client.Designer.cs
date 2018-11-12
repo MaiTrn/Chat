@@ -32,13 +32,13 @@
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.txtMessage = new System.Windows.Forms.TextBox();
-            this.listBoxStatus = new System.Windows.Forms.ListBox();
             this.btnPrivChat = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnonlineusers = new System.Windows.Forms.Button();
             this.lbName = new System.Windows.Forms.Label();
+            this.txtboxMsg = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,9 +67,9 @@
             // btnSend
             // 
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSend.Location = new System.Drawing.Point(631, 384);
+            this.btnSend.Location = new System.Drawing.Point(612, 377);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(93, 42);
+            this.btnSend.Size = new System.Drawing.Size(78, 42);
             this.btnSend.TabIndex = 10;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -77,32 +77,19 @@
             // 
             // txtMessage
             // 
-            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(187, 361);
+            this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Location = new System.Drawing.Point(201, 357);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(438, 74);
+            this.txtMessage.Size = new System.Drawing.Size(393, 74);
             this.txtMessage.TabIndex = 9;
-            // 
-            // listBoxStatus
-            // 
-            this.listBoxStatus.BackColor = System.Drawing.SystemColors.Window;
-            this.listBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxStatus.ForeColor = System.Drawing.Color.Black;
-            this.listBoxStatus.FormattingEnabled = true;
-            this.listBoxStatus.ItemHeight = 20;
-            this.listBoxStatus.Location = new System.Drawing.Point(187, 63);
-            this.listBoxStatus.Name = "listBoxStatus";
-            this.listBoxStatus.ScrollAlwaysVisible = true;
-            this.listBoxStatus.Size = new System.Drawing.Size(537, 284);
-            this.listBoxStatus.TabIndex = 7;
             // 
             // btnPrivChat
             // 
             this.btnPrivChat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrivChat.Location = new System.Drawing.Point(16, 410);
+            this.btnPrivChat.Location = new System.Drawing.Point(29, 405);
             this.btnPrivChat.Name = "btnPrivChat";
-            this.btnPrivChat.Size = new System.Drawing.Size(135, 25);
+            this.btnPrivChat.Size = new System.Drawing.Size(135, 29);
             this.btnPrivChat.TabIndex = 13;
             this.btnPrivChat.Text = "Private Chat";
             this.btnPrivChat.UseVisualStyleBackColor = true;
@@ -115,7 +102,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(747, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(716, 28);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -134,11 +121,11 @@
             // btnonlineusers
             // 
             this.btnonlineusers.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnonlineusers.Location = new System.Drawing.Point(16, 361);
+            this.btnonlineusers.Location = new System.Drawing.Point(29, 362);
             this.btnonlineusers.Name = "btnonlineusers";
             this.btnonlineusers.Size = new System.Drawing.Size(135, 28);
             this.btnonlineusers.TabIndex = 15;
-            this.btnonlineusers.Text = "Online Users";
+            this.btnonlineusers.Text = "Update List";
             this.btnonlineusers.UseVisualStyleBackColor = true;
             this.btnonlineusers.Click += new System.EventHandler(this.btnonlineusers_Click);
             // 
@@ -153,11 +140,24 @@
             this.lbName.TabIndex = 16;
             this.lbName.Text = "Username: ";
             // 
+            // txtboxMsg
+            // 
+            this.txtboxMsg.BackColor = System.Drawing.SystemColors.Window;
+            this.txtboxMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtboxMsg.Location = new System.Drawing.Point(201, 67);
+            this.txtboxMsg.Multiline = true;
+            this.txtboxMsg.Name = "txtboxMsg";
+            this.txtboxMsg.ReadOnly = true;
+            this.txtboxMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtboxMsg.Size = new System.Drawing.Size(477, 264);
+            this.txtboxMsg.TabIndex = 17;
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(747, 448);
+            this.ClientSize = new System.Drawing.Size(716, 448);
+            this.Controls.Add(this.txtboxMsg);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnonlineusers);
             this.Controls.Add(this.btnPrivChat);
@@ -165,7 +165,6 @@
             this.Controls.Add(this.listBoxUsers);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtMessage);
-            this.Controls.Add(this.listBoxStatus);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Client";
@@ -186,12 +185,12 @@
         private System.Windows.Forms.ListBox listBoxUsers;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.TextBox txtMessage;
-        private System.Windows.Forms.ListBox listBoxStatus;
         private System.Windows.Forms.Button btnPrivChat;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Button btnonlineusers;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.TextBox txtboxMsg;
     }
 }
