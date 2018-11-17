@@ -74,7 +74,7 @@
             this.labelstatus.Location = new System.Drawing.Point(12, 41);
             this.labelstatus.Name = "labelstatus";
             this.labelstatus.Size = new System.Drawing.Size(144, 20);
-            this.labelstatus.TabIndex = 2;
+            this.labelstatus.TabIndex = 10;
             this.labelstatus.Text = "Status Message";
             // 
             // txtMessage
@@ -84,7 +84,7 @@
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.Size = new System.Drawing.Size(412, 62);
-            this.txtMessage.TabIndex = 3;
+            this.txtMessage.TabIndex = 1;
             // 
             // btnSend
             // 
@@ -92,7 +92,7 @@
             this.btnSend.Location = new System.Drawing.Point(451, 348);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(93, 42);
-            this.btnSend.TabIndex = 4;
+            this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
@@ -104,7 +104,7 @@
             this.lbIP.Location = new System.Drawing.Point(434, 114);
             this.lbIP.Name = "lbIP";
             this.lbIP.Size = new System.Drawing.Size(32, 20);
-            this.lbIP.TabIndex = 5;
+            this.lbIP.TabIndex = 10;
             this.lbIP.Text = "IP:";
             // 
             // lbPORT
@@ -114,45 +114,51 @@
             this.lbPORT.Location = new System.Drawing.Point(435, 200);
             this.lbPORT.Name = "lbPORT";
             this.lbPORT.Size = new System.Drawing.Size(65, 20);
-            this.lbPORT.TabIndex = 6;
+            this.lbPORT.TabIndex = 10;
             this.lbPORT.Text = "PORT:";
             // 
             // IP
             // 
             this.IP.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.IP.Cursor = System.Windows.Forms.Cursors.Default;
             this.IP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IP.Location = new System.Drawing.Point(451, 143);
             this.IP.Multiline = true;
             this.IP.Name = "IP";
             this.IP.ReadOnly = true;
             this.IP.Size = new System.Drawing.Size(100, 32);
-            this.IP.TabIndex = 7;
+            this.IP.TabIndex = 10;
             this.IP.Text = " 127.0.0.1";
+            this.IP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // port
             // 
             this.port.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.port.Cursor = System.Windows.Forms.Cursors.Default;
             this.port.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.port.Location = new System.Drawing.Point(451, 230);
             this.port.Multiline = true;
             this.port.Name = "port";
             this.port.ReadOnly = true;
             this.port.Size = new System.Drawing.Size(100, 32);
-            this.port.TabIndex = 8;
-            this.port.Text = " 8910";
+            this.port.TabIndex = 10;
+            this.port.Text = "8910";
+            this.port.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtboxStatus
             // 
             this.txtboxStatus.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtboxStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtboxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtboxStatus.ForeColor = System.Drawing.Color.IndianRed;
             this.txtboxStatus.Location = new System.Drawing.Point(12, 86);
             this.txtboxStatus.Multiline = true;
             this.txtboxStatus.Name = "txtboxStatus";
             this.txtboxStatus.ReadOnly = true;
+            this.txtboxStatus.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtboxStatus.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtboxStatus.Size = new System.Drawing.Size(412, 224);
-            this.txtboxStatus.TabIndex = 9;
+            this.txtboxStatus.TabIndex = 10;
             // 
             // frmServer
             // 

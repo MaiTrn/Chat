@@ -34,13 +34,12 @@
             this.txtMessage = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnonlineusers = new System.Windows.Forms.Button();
             this.lbName = new System.Windows.Forms.Label();
             this.txtboxMsg = new System.Windows.Forms.TextBox();
             this.btnPrivChat = new System.Windows.Forms.CheckBox();
             this.btnPubChat = new System.Windows.Forms.CheckBox();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +51,7 @@
             this.labelUsers.Location = new System.Drawing.Point(12, 28);
             this.labelUsers.Name = "labelUsers";
             this.labelUsers.Size = new System.Drawing.Size(119, 20);
-            this.labelUsers.TabIndex = 12;
+            this.labelUsers.TabIndex = 0;
             this.labelUsers.Text = "Users Online";
             // 
             // listBoxUsers
@@ -64,15 +63,15 @@
             this.listBoxUsers.Name = "listBoxUsers";
             this.listBoxUsers.ScrollAlwaysVisible = true;
             this.listBoxUsers.Size = new System.Drawing.Size(165, 244);
-            this.listBoxUsers.TabIndex = 11;
+            this.listBoxUsers.TabIndex = 0;
             // 
             // btnSend
             // 
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSend.Location = new System.Drawing.Point(612, 377);
+            this.btnSend.Location = new System.Drawing.Point(551, 364);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(78, 42);
-            this.btnSend.TabIndex = 10;
+            this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
@@ -83,8 +82,8 @@
             this.txtMessage.Location = new System.Drawing.Point(201, 347);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(393, 92);
-            this.txtMessage.TabIndex = 9;
+            this.txtMessage.Size = new System.Drawing.Size(325, 72);
+            this.txtMessage.TabIndex = 1;
             // 
             // menuStrip1
             // 
@@ -94,7 +93,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(716, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(663, 28);
             this.menuStrip1.TabIndex = 14;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,22 +105,18 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "&File";
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(108, 26);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // btnonlineusers
-            // 
-            this.btnonlineusers.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnonlineusers.Location = new System.Drawing.Point(29, 337);
-            this.btnonlineusers.Name = "btnonlineusers";
-            this.btnonlineusers.Size = new System.Drawing.Size(134, 28);
-            this.btnonlineusers.TabIndex = 15;
-            this.btnonlineusers.Text = "Update List";
-            this.btnonlineusers.UseVisualStyleBackColor = true;
-            this.btnonlineusers.Click += new System.EventHandler(this.btnonlineusers_Click);
             // 
             // lbName
             // 
@@ -131,30 +126,31 @@
             this.lbName.Location = new System.Drawing.Point(184, 28);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(106, 20);
-            this.lbName.TabIndex = 16;
+            this.lbName.TabIndex = 0;
             this.lbName.Text = "Username: ";
             // 
             // txtboxMsg
             // 
             this.txtboxMsg.BackColor = System.Drawing.SystemColors.Window;
+            this.txtboxMsg.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtboxMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtboxMsg.Location = new System.Drawing.Point(201, 67);
             this.txtboxMsg.Multiline = true;
             this.txtboxMsg.Name = "txtboxMsg";
             this.txtboxMsg.ReadOnly = true;
             this.txtboxMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtboxMsg.Size = new System.Drawing.Size(477, 244);
-            this.txtboxMsg.TabIndex = 17;
+            this.txtboxMsg.Size = new System.Drawing.Size(428, 244);
+            this.txtboxMsg.TabIndex = 0;
             // 
             // btnPrivChat
             // 
             this.btnPrivChat.Appearance = System.Windows.Forms.Appearance.Button;
             this.btnPrivChat.AutoSize = true;
             this.btnPrivChat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrivChat.Location = new System.Drawing.Point(29, 377);
+            this.btnPrivChat.Location = new System.Drawing.Point(33, 347);
             this.btnPrivChat.Name = "btnPrivChat";
             this.btnPrivChat.Size = new System.Drawing.Size(127, 27);
-            this.btnPrivChat.TabIndex = 19;
+            this.btnPrivChat.TabIndex = 3;
             this.btnPrivChat.Text = "    Private Chat    ";
             this.btnPrivChat.UseVisualStyleBackColor = true;
             this.btnPrivChat.CheckedChanged += new System.EventHandler(this.btnPrivChat_CheckedChanged);
@@ -165,32 +161,24 @@
             this.btnPubChat.Appearance = System.Windows.Forms.Appearance.Button;
             this.btnPubChat.AutoSize = true;
             this.btnPubChat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPubChat.Location = new System.Drawing.Point(27, 418);
+            this.btnPubChat.Location = new System.Drawing.Point(33, 392);
             this.btnPubChat.Name = "btnPubChat";
             this.btnPubChat.Size = new System.Drawing.Size(129, 27);
-            this.btnPubChat.TabIndex = 20;
+            this.btnPubChat.TabIndex = 4;
             this.btnPubChat.Text = "     Public Chat     ";
             this.btnPubChat.UseVisualStyleBackColor = true;
             this.btnPubChat.CheckedChanged += new System.EventHandler(this.btnPubChat_CheckedChanged);
             this.btnPubChat.Click += new System.EventHandler(this.btnPubChat_Click);
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(716, 456);
+            this.ClientSize = new System.Drawing.Size(663, 442);
             this.Controls.Add(this.btnPubChat);
             this.Controls.Add(this.btnPrivChat);
             this.Controls.Add(this.txtboxMsg);
             this.Controls.Add(this.lbName);
-            this.Controls.Add(this.btnonlineusers);
             this.Controls.Add(this.labelUsers);
             this.Controls.Add(this.listBoxUsers);
             this.Controls.Add(this.btnSend);
@@ -218,7 +206,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Button btnonlineusers;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.TextBox txtboxMsg;
         private System.Windows.Forms.CheckBox btnPrivChat;

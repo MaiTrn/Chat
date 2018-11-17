@@ -31,6 +31,8 @@ namespace Client
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             this.AcceptButton = btnSend;
+            listBoxUsers.TabStop = false;
+            txtboxMsg.TabStop = false;
         }
 
         private void Client_Load(object sender, EventArgs e)
@@ -52,6 +54,7 @@ namespace Client
                 user = login.txtlogin.Text;
                 client.Send(Serialize("CONNECT|" + user));
                 lbName.Text += user;
+                client.Send(Serialize("REQUESTUSERS"));
             }
             if(login.DialogResult == DialogResult.Cancel)
             {
@@ -64,7 +67,10 @@ namespace Client
             if(txtMessage.Text != string.Empty)
             {
                 Send();
-                AddMessage(user + ": " + txtMessage.Text);
+                if (btnPrivChat.Checked == true)
+                    AddMessage("(Private) " + user + ": " + txtMessage.Text);
+                else if (btnPubChat.Checked == true)
+                    AddMessage(user + ": " + txtMessage.Text);
             }
         }
 
@@ -101,8 +107,7 @@ namespace Client
         /// </summary>
         public void Disconnect()
         {
-
-           client.Close();
+            client.Close();
         }
 
         /// <summary>
@@ -145,14 +150,9 @@ namespace Client
         /// <param name="s"></param>
         public void AddMessage(string s)
         {
-            if (btnPrivChat.Checked == true)
-            {
-                txtboxMsg.AppendText("(Private) " + s + Environment.NewLine);
-            }
-            else if (btnPubChat.Checked == true)
-            {
-                txtboxMsg.AppendText(s + Environment.NewLine);   
-            }
+            
+            txtboxMsg.AppendText(s + Environment.NewLine);   
+            
             txtMessage.Clear();
         }
 
@@ -213,9 +213,19 @@ namespace Client
         private void ListUsers(string data)
         {
             string[] Users = data.Split(',');
+            int flag = 0;
             listBoxUsers.Items.Clear();
             foreach (string user in Users)
-                listBoxUsers.Items.Add(user);
+            {
+                if(user != "")
+                    listBoxUsers.Items.Add(user);
+                if(btnPrivChat.Checked == true && user == altuser)
+                {
+                    flag = 1;
+                }
+            }
+            if (flag == 0 && btnPrivChat.Checked == true)
+                btnPubChat.Checked = true;
         }
 
         private void ChatPrivate(string name)
@@ -227,17 +237,14 @@ namespace Client
 
         private void Client_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(user != null)
+            if (user != null)
+            {
                 client.Send(Serialize("DISCONNECT|" + user));
+            }
             Disconnect();
         }
 
         #region Buttons
-        private void btnonlineusers_Click(object sender, EventArgs e)
-        {
-            client.Send(Serialize("REQUESTUSERS"));         
-        }
-
         private void btnPrivChat_Click(object sender, EventArgs e)
         {
             if (listBoxUsers.SelectedItem != null)

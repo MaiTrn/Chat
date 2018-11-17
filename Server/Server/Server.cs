@@ -31,7 +31,9 @@ namespace Server
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             this.AcceptButton = btnSend;
-            
+            txtboxStatus.TabStop = false;
+            IP.TabStop = false;
+            port.TabStop = false;
         }
 
         
@@ -69,12 +71,13 @@ namespace Server
                     break;
                 case "DISCONNECT":      // nguoi dung thoat
                     DisconnectUser(dataArray[1], sender);
+                    ListUsers();
                     break;
                 case "CHAT":            //gui tin nhan
                     SendChat(dataArray[1], sender);
                     break;
                 case "REQUESTUSERS":    // yeu cau gui list user dang online
-                    ListUsers(sender);
+                    ListUsers();
                     break;
                 case "PRIVATECHAT":
                     ChatPrivate(dataArray[1], sender);
@@ -99,14 +102,18 @@ namespace Server
             }
 
         }
-        private void ListUsers(ClientInfo client)
+        private void ListUsers()
         {
             string ListedUsers = "REQUESTUSERS|";
             foreach (ClientInfo item in clientList)
             {
                 ListedUsers = ListedUsers + item.Name + ",";
             }
-            Send(ListedUsers, client);
+            foreach(ClientInfo item in clientList)
+            {
+                Send(ListedUsers, item);
+            }
+           
         }
         private void SendChat(string message, ClientInfo client)
         {
