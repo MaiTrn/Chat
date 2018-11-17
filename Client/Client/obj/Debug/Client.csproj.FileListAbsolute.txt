@@ -9,4 +9,3 @@ E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.exe
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.pdb
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.frmLogin.resources
 E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
-E:\Visual Studio\LTTQ\ClientServerChat\Client\Client\obj\Debug\Client.PrivateChat.resources

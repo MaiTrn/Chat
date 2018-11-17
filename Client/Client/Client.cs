@@ -24,6 +24,8 @@ namespace Client
         private IPEndPoint localIP;
         private Socket client;
         private string user;
+        private string altuser;
+
         public Client()
         {
             InitializeComponent();
@@ -37,6 +39,7 @@ namespace Client
             this.Show();
             Connect();
             AttemptLogin();
+            btnPubChat.Checked = true;
         }
 
         private void AttemptLogin()
@@ -81,7 +84,7 @@ namespace Client
             }
             catch
             {
-                MessageBox.Show("Không thể kết nối đến server!", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Can't connect to server!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Disconnect();
                 Close();
             }
@@ -107,8 +110,10 @@ namespace Client
         /// </summary>
         public void Send()
         {
-            if (txtMessage.Text != string.Empty)
+            if (btnPubChat.Checked == true && txtMessage.Text != string.Empty)
                 client.Send(Serialize("CHAT|" + user + ": " + txtMessage.Text));
+            else if (btnPrivChat.Checked == true && txtMessage.Text != string.Empty)
+                client.Send(Serialize("PCHAT|(Private) " + user + ": " + txtMessage.Text + "|" + altuser));
         }
 
         /// <summary>
@@ -140,7 +145,14 @@ namespace Client
         /// <param name="s"></param>
         public void AddMessage(string s)
         {
-            txtboxMsg.AppendText(s + Environment.NewLine);
+            if (btnPrivChat.Checked == true)
+            {
+                txtboxMsg.AppendText("(Private) " + s + Environment.NewLine);
+            }
+            else if (btnPubChat.Checked == true)
+            {
+                txtboxMsg.AppendText(s + Environment.NewLine);   
+            }
             txtMessage.Clear();
         }
 
@@ -186,8 +198,14 @@ namespace Client
                 case "REQUESTUSERS":    // yeu cau gui list user dang online
                     ListUsers(dataArray[1]);
                     break;
+                case "PRIVATECHAT":
+                    ChatPrivate(dataArray[1]);
+                    break;
+                case "PUBLICCHAT":
+                    btnPubChat.Checked = true;
+                    break;
                 default:
-                    AddMessage("Unknown message:" + data);
+                    AddMessage("Unknown message:" + dataArray[0]);
                     break;
             }
         }
@@ -200,20 +218,74 @@ namespace Client
                 listBoxUsers.Items.Add(user);
         }
 
-
+        private void ChatPrivate(string name)
+        {
+            altuser = name;
+            btnPrivChat.Checked = true;
+        }
         #endregion
 
-        private void frmServer_FormClosed(object sender, FormClosedEventArgs e)
+        private void Client_FormClosed(object sender, FormClosedEventArgs e)
         {
             if(user != null)
                 client.Send(Serialize("DISCONNECT|" + user));
             Disconnect();
         }
 
+        #region Buttons
         private void btnonlineusers_Click(object sender, EventArgs e)
         {
-            client.Send(Serialize("REQUESTUSERS"));
-           
+            client.Send(Serialize("REQUESTUSERS"));         
         }
+
+        private void btnPrivChat_Click(object sender, EventArgs e)
+        {
+            if (listBoxUsers.SelectedItem != null)
+            {
+                altuser = listBoxUsers.SelectedItem.ToString();
+                if (altuser != user)
+                {
+                    client.Send(Serialize("PRIVATECHAT|" + altuser));
+                    listBoxUsers.ClearSelected();
+                }
+                else
+                {
+                    MessageBox.Show("You can't talk to yourself!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    listBoxUsers.ClearSelected();
+                    btnPrivChat.Checked = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select someone to talk to!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnPrivChat.Checked = false;
+                listBoxUsers.ClearSelected();
+            }
+        }
+
+        private void btnPubChat_Click(object sender, EventArgs e)
+        {
+            AddMessage("**You are in a public chat!**");
+            client.Send(Serialize("PCHAT|**You are in a public chat!**|" + altuser));
+        }
+
+        private void btnPrivChat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btnPrivChat.Checked == true)
+                btnPubChat.Checked = false;
+            else btnPubChat.Checked = true;
+        }
+
+        private void btnPubChat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btnPubChat.Checked == true)
+                btnPrivChat.Checked = false;
+        }
+ 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        #endregion
     }
 }

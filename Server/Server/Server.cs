@@ -38,7 +38,7 @@ namespace Server
         private void frmServer_Load(object sender, EventArgs e)
         {
             Connect();
-            AddMessage("San sang ket noi");
+            AddMessage("Ready to connect");
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace Server
             
         }
 
-        //tuy theo tung lenh user gui tra ve, duoc ngan cach boi dau |
+        //tuy theo tung lenh user gui den, duoc ngan cach boi dau |
         //co cach xu ly khac nhau
         //them chuc nang cho form vao day
         #region Xu ly Request tu nguoi dung
@@ -75,6 +75,12 @@ namespace Server
                     break;
                 case "REQUESTUSERS":    // yeu cau gui list user dang online
                     ListUsers(sender);
+                    break;
+                case "PRIVATECHAT":
+                    ChatPrivate(dataArray[1], sender);
+                    break;
+                case "PCHAT":
+                    SendPChat(dataArray[1], dataArray[2]);
                     break;
                 default:
                     AddMessage("Unknown message: " + data);
@@ -128,6 +134,36 @@ namespace Server
             }
             clientList.Remove(client);
             client.ClientSocket.Close();
+        }
+        private void ChatPrivate(string data, ClientInfo client)
+        {
+            AddMessage(client.Name + " is in a private chat with " + data);
+            int i = 0;
+            for(int j = 0; j < clientList.Count; j++)
+            {
+                if (data == clientList[j].Name)
+                {
+                    i = j;
+                }
+            }
+            Send("PRIVATECHAT|" + client.Name, clientList[i]);
+            Send("CHAT|**You are in a private chat with " + client.Name + "**", clientList[i]);
+            Send("CHAT|**You are in a private chat with " + data + "**", client);
+        }
+        private void SendPChat(string message, string name)
+        {
+            foreach(ClientInfo item in clientList)
+            {
+                if(item.Name == name )
+                {
+                    if(message.CompareTo("**You are in a public chat!**") == 0)
+                    {
+                        Send("PUBLICCHAT|", item);
+                        AddMessage("Ended private chat");
+                    }
+                    Send("CHAT|" + message, item);
+                }                    
+            }
         }
         #endregion
 
