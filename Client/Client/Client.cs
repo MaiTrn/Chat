@@ -38,6 +38,7 @@ namespace Client
             Connect();
             AttemptLogin();
             this.cmbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            client.Send(Serialize("REQUESTUSERS"));
         }
 
         private void AttemptLogin()

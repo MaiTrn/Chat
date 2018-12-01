@@ -62,7 +62,7 @@
             this.listBoxUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxUsers.FormattingEnabled = true;
             this.listBoxUsers.ItemHeight = 17;
-            this.listBoxUsers.Location = new System.Drawing.Point(12, 73);
+            this.listBoxUsers.Location = new System.Drawing.Point(12, 80);
             this.listBoxUsers.Margin = new System.Windows.Forms.Padding(2);
             this.listBoxUsers.Name = "listBoxUsers";
             this.listBoxUsers.ScrollAlwaysVisible = true;
@@ -85,18 +85,18 @@
             // txtMessage
             // 
             this.txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(151, 290);
+            this.txtMessage.Location = new System.Drawing.Point(151, 294);
             this.txtMessage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(296, 61);
+            this.txtMessage.Size = new System.Drawing.Size(296, 57);
             this.txtMessage.TabIndex = 9;
             // 
             // btnPrivChat
             // 
             this.btnPrivChat.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnPrivChat.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrivChat.Location = new System.Drawing.Point(22, 329);
+            this.btnPrivChat.Location = new System.Drawing.Point(22, 326);
             this.btnPrivChat.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrivChat.Name = "btnPrivChat";
             this.btnPrivChat.Size = new System.Drawing.Size(101, 24);
