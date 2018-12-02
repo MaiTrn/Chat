@@ -42,6 +42,7 @@ namespace Client
             Connect();
             AttemptLogin();
             btnPubChat.Checked = true;
+            this.cmbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             client.Send(Serialize("REQUESTUSERS"));
         }
 
@@ -269,7 +270,6 @@ namespace Client
                 listBoxUsers.ClearSelected();
             }
         }
-
         private void btnPubChat_Click(object sender, EventArgs e)
         {
             AddMessage("**You are in a public chat!**");
@@ -288,5 +288,25 @@ namespace Client
             Close();
         }
         #endregion
+        private void cmbColor_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbColor.SelectedItem.ToString() == "Red")
+                this.BackColor = Color.OrangeRed;
+            if (cmbColor.SelectedItem.ToString() == "Black")
+                this.BackColor = Color.Black;
+            if (cmbColor.SelectedItem.ToString() == "Yellow")
+                this.BackColor = Color.Gold;
+            if (cmbColor.SelectedItem.ToString() == "Green")
+                this.BackColor = Color.LightGreen;
+            if (cmbColor.SelectedItem.ToString() == "Blue")
+                this.BackColor = Color.LightBlue;
+            if (cmbColor.SelectedItem.ToString() == "Pink")
+                this.BackColor = Color.LightPink;
+            if (cmbColor.SelectedItem.ToString() == "White")
+                this.BackColor = Color.White;
+         
+                 if (cmbColor.SelectedItem.ToString() == "Default")
+                this.BackColor = SystemColors.Control;
+        }
     }
 }
