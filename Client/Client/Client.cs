@@ -42,6 +42,7 @@ namespace Client
             Connect();
             AttemptLogin();
             btnPubChat.Checked = true;
+            client.Send(Serialize("REQUESTUSERS"));
         }
 
         private void AttemptLogin()
@@ -54,7 +55,6 @@ namespace Client
                 user = login.txtlogin.Text;
                 client.Send(Serialize("CONNECT|" + user));
                 lbName.Text += user;
-                client.Send(Serialize("REQUESTUSERS"));
             }
             if(login.DialogResult == DialogResult.Cancel)
             {
@@ -192,16 +192,16 @@ namespace Client
             string[] dataArray = data.Split('|');
             switch (dataArray[0])
             {
-               case "CHAT":            //gui tin nhan
+               case "CHAT":            // gui tin nhan
                     AddMessage(dataArray[1]);
                     break;
                 case "REQUESTUSERS":    // yeu cau gui list user dang online
                     ListUsers(dataArray[1]);
                     break;
-                case "PRIVATECHAT":
+                case "PRIVATECHAT":     // chat rieng
                     ChatPrivate(dataArray[1]);
                     break;
-                case "PUBLICCHAT":
+                case "PUBLICCHAT":      // quay lai chat chung
                     btnPubChat.Checked = true;
                     break;
                 default:
@@ -283,12 +283,6 @@ namespace Client
             else btnPubChat.Checked = true;
         }
 
-        private void btnPubChat_CheckedChanged(object sender, EventArgs e)
-        {
-            if (btnPubChat.Checked == true)
-                btnPrivChat.Checked = false;
-        }
- 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();

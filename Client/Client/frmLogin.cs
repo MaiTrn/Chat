@@ -20,8 +20,12 @@ namespace Client
 
         private void Enter_Click(object sender, EventArgs e)
         {
-            if(txtlogin.Text != string.Empty)
+            if (txtlogin.Text != string.Empty)
                 DialogResult = DialogResult.OK;
+            else
+            {
+                MessageBox.Show("Please enter a name!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Exit_Click(object sender, EventArgs e)

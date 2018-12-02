@@ -167,7 +167,7 @@
             this.btnPubChat.TabIndex = 4;
             this.btnPubChat.Text = "     Public Chat     ";
             this.btnPubChat.UseVisualStyleBackColor = true;
-            this.btnPubChat.CheckedChanged += new System.EventHandler(this.btnPubChat_CheckedChanged);
+            this.btnPubChat.CheckedChanged += new System.EventHandler(this.btnPrivChat_CheckedChanged);
             this.btnPubChat.Click += new System.EventHandler(this.btnPubChat_Click);
             // 
             // Client
